@@ -1,0 +1,29 @@
+version: '3'
+services: 
+#################################################  
+  motion:
+    container_name: Motion
+    environment: 
+      - TZ=Europe/Oslo
+    build:
+      context: .
+      dockerfile: ./Motion/Dockerfile
+    devices: 
+      - /dev/video0:/dev/sladrespeil # Fun name
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+#################################################  
+  homeassistant:
+    container_name: HomeAssistant
+    build:
+      context: .
+      dockerfile: ./HomeAssistant/Dockerfile
+    environment: 
+      - TZ=Europe/Oslo
+    volumes: 
+      - /home/pi/dockervolumes/homeassistant/config:/config
+    network_mode: host
+    restart: unless-stopped
+    ports: 
+      - 8123:8123
