@@ -25,5 +25,3 @@ services:
       - /home/pi/dockervolumes/homeassistant/config:/config
     network_mode: host
     restart: unless-stopped
-    ports: 
-      - 8123:8123
