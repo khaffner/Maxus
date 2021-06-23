@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM debian:stable
 
 RUN apt-get update && apt-get install motion -y
 EXPOSE 8080
