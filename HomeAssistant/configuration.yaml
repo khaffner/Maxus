@@ -1,0 +1,36 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+recorder:
+  commit_interval: 60
+  purge_keep_days: 7
+  include:
+    domains:
+      - sensor
+
+sensor:
+  - platform: systemmonitor
+    scan_interval: 10
+    resources:
+      - type: disk_use_percent
+      - type: memory_use_percent
+      - type: swap_use_percent
+      - type: processor_use
+      - type: processor_temperature
+      - type: load_1m
+
+  - platform: command_line
+    command: iwconfig wlan0 | grep Quality= | sed -r 's/^([^.]+).*$/\1/; s/^[^0-9]*([0-9]+).*$/\1/'
+    name: Wifi Signal
+    unit_of_measurement: '%'
+    value_template: "{{ (value | int / 70*100) | round(0) }}"
+
