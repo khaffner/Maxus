@@ -34,3 +34,7 @@ sensor:
     unit_of_measurement: '%'
     value_template: "{{ (value | int / 70*100) | round(0) }}"
 
+camera:
+  - platform: mjpeg
+    name: Rear Camera
+    mjpeg_url: http://127.0.0.1:8080/mjpeg
