@@ -1,0 +1,84 @@
+views:
+  - title: Maxus
+    icon: mdi:van-utility
+    path: van
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: picture-entity
+                entity: camera.rear_camera
+                show_name: false
+                show_state: false
+                camera_view: live
+                tap_action:
+                  action: none
+                hold_action:
+                  action: none
+  - title: System
+    path: system
+    icon: mdi:cogs
+    visible:
+      - user: efbd63cbc5fb428f8b66050c0c5c9ff8
+    panel: true
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.processor_temperature
+                min: 0
+                max: 80
+                name: CPU
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 65
+              - type: gauge
+                entity: sensor.processor_use_percent
+                min: 0
+                max: 100
+                name: CPU
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 75
+              - type: gauge
+                entity: sensor.memory_use_percent
+                min: 0
+                max: 100
+                severity:
+                  green: 0
+                  yellow: 60
+                  red: 75
+                name: RAM
+              - type: gauge
+                entity: sensor.disk_use_percent
+                min: 0
+                max: 100
+                name: MicroSD
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 75
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.wifi_signal
+                min: 0
+                max: 100
+                name: WiFi Signal
+                severity:
+                  green: 50
+                  yellow: 25
+                  red: 10
+              - type: entity
+                entity: binary_sensor.rpi_power_status
+                name: PSU
+              - type: entity
+                entity: sensor.local_ip
+                name: Local IP
