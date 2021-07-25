@@ -34,6 +34,31 @@ sensor:
     unit_of_measurement: '%'
     value_template: "{{ (value | int / 70*100) | round(0) }}"
 
+  - platform: rest
+    resource: http://127.0.0.1:5000/IMU
+    value_template: '{{ value_json }}'
+    json_attributes:
+      - AccX
+      - AccY
+      - Heading
+    scan_interval: 1
+  
+  - platform: template
+    sensors:
+      accx:
+        friendly_name: "Acceleration X"
+        unit_of_measurement: "°"
+        value_template: "{{state_attr('sensor.imu','AccX')}}"
+      accy:
+        friendly_name: "Acceleration Y"
+        unit_of_measurement: "°"
+        value_template: "{{state_attr('sensor.imu','AccY')}}"
+      heading:
+        friendly_name: "Heading"
+        unit_of_measurement: "°"
+        value_template: "{{state_attr('sensor.imu','Heading')}}"
+
+
 camera:
   - platform: mjpeg
     name: Rear Camera
