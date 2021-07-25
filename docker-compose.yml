@@ -38,4 +38,4 @@ services:
     container_name: IMUServer
     build:
         context: .
-        dockerfile: Dockerfile
+        dockerfile: ./IMU/Dockerfile
