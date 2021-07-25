@@ -59,6 +59,28 @@ sensor:
         unit_of_measurement: "°"
         value_template: "{{state_attr('sensor.imu','Heading')}}"
 
+      # https://no.wikipedia.org/wiki/Himmelretning#%C3%85tte_himmelretninger
+      # https://community.home-assistant.io/t/sensor-wind-compass-up-for-grabs/52425
+      heading_abbr:
+        friendly_name: "Heading abbreviated"
+        value_template: >-
+          {% if 337.5 <= states('sensor.heading')|float <= 22.5 %}
+             N
+          {% elif 22.5 <= states('sensor.heading')|float <= 67.5 %}
+             NE
+          {% elif 67.5 <= states('sensor.heading')|float <= 112.5 %}
+             E
+          {% elif 112.5 <= states('sensor.heading')|float <= 157.5 %}
+             SE
+          {% elif 157.5 <= states('sensor.heading')|float <= 202.5 %}
+             S
+          {% elif 202.5 <= states('sensor.heading')|float <= 247.5 %}
+             SW
+          {% elif 247.5 <= states('sensor.heading')|float <= 292.5 %}
+             W
+          {% elif 292.5 <= states('sensor.heading')|float <= 337.5 %}
+             NW
+          {% endif %}
 
 camera:
   - platform: mjpeg
