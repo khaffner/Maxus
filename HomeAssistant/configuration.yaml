@@ -35,6 +35,7 @@ sensor:
     value_template: "{{ (value | int / 70*100) | round(0) }}"
 
   - platform: rest
+    name: IMU
     resource: http://127.0.0.1:5000/IMU
     value_template: '{{ value_json }}'
     json_attributes:
