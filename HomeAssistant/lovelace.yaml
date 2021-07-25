@@ -2,6 +2,7 @@ views:
   - title: Maxus
     icon: mdi:van-utility
     path: van
+    panel: true
     badges: []
     cards:
       - type: vertical-stack
@@ -17,6 +18,26 @@ views:
                   action: none
                 hold_action:
                   action: none
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.accx
+                name: Acceleration
+                min: -45
+                max: 45
+              - type: gauge
+                entity: sensor.accy
+                max: 45
+                name: Sideways tilt
+                min: -45
+              - type: markdown
+                content: >-
+                  <font size="3"> <ha-icon icon="mdi:compass"></ha-icon> Driving
+                  direction </center>
+
+
+                  <center> <font size="50"> {{ states('sensor.heading_abbr') }}
+                  </font> </center>
   - title: System
     path: system
     icon: mdi:cogs
