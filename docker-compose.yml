@@ -25,3 +25,17 @@ services:
       - /home/pi/dockervolumes/homeassistant/config:/config
     network_mode: host
     restart: unless-stopped
+#################################################
+  imuserver:
+    ports:
+        - '5000:5000'
+    devices:
+        - '/dev/i2c-1:/dev/i2c-1'
+    restart: unless-stopped
+    environment: 
+      - TZ=Europe/Oslo
+    privileged: true
+    container_name: IMUServer
+    build:
+        context: .
+        dockerfile: Dockerfile
