@@ -43,7 +43,7 @@ sensor:
       - AccY
       - Heading
     scan_interval: 1
-  
+
   - platform: template
     sensors:
       accx:
